@@ -23,26 +23,35 @@
     
     'use strict';
     
-    var shots;
-	var filters = {};
+    var shots; // Create empty shots var to be updated later.
+	var filters = {}; // Create empty filters object to be updated later.
 
 	
 	/*--------------------------------------------------*\
 		#Fetch data on load 
 		
-		This is a callable self executing function to 
-		fetch the shots on load and also whenever called.
+		This is a function to fetch the shots 
+		whenever called. It accepts 2 arguments:
+		1. The url path 
+		2. The url query(ies)
 	\*--------------------------------------------------*/
     
     var fetch = function(path, query) {
 	    
+	    // If path is undefined, default to shots.
 	    path = typeof path !== 'undefined' ? path : 'shots';
+	    
+	    // Check if query var is undefined to build url query.
 	    query = typeof query !== 'undefined' ? query + '&' : '';
 	    
+	    // Get data with 96 results per page.
 	    DRIBBBLE.api.get( path + '?' + query + 'per_page=96', function(data) {
 	        
+	        // Update empty shots var with requested data to make 'data' 
+	        // available outside of fetch function.
 	        shots = data;
 	        
+	        // Create handlebars template and append it to DOM.
 	        var tpl = Handlebars.compile( $('#shots').html() ); 
 	        
 	        $('.js-shots').append( tpl(data) );
@@ -50,7 +59,7 @@
 	    });
 	};
 	
-	fetch();
+	fetch(); // Run Fetch on load.
 	
 
     
@@ -60,43 +69,47 @@
 	
 	$('.js-filter').change(function() {
 	
+		// Store this rather than fetching the object multiple times.
 		var $this = $(this);
-		var val = $this.val();
-		var filter = $this.data('filter');
+		var val = $this.val(); // Get value of filter.
+		var filter = $this.data('filter'); // Get name/type of filter.
 		
+		// Update filters object with the filter and value.
 		filters[filter] = val;
 
-		$('.js-shots').html('');
+		$('.js-shots').html(''); // Clear DOM.
 		
-
-		fetch( 'shots', $.param(filters) );
+		fetch( 'shots', $.param(filters) ); // Re-run fetch with filters.
 	
 	});
 	
 	
     
-    /* Shot single */
+    /*--------------------------------------------------*\
+		#Shots Single
+	\*--------------------------------------------------*/
     
     $(document).on('click', '.js-shot', function(e) {
-      
+	    
+	    // Store ID of item based on Object Iterration count.
         var id = $(this).closest('.shot').data('count');
         
+        // Create handlebars template and append it to DOM.
         var tpl = Handlebars.compile( $('#shotSingle').html() );   
         
         $('.js-shot-single').html('').append( tpl(shots[id]) );
         
         
-        
+        // Get Comments data of curent shot.
         DRIBBBLE.api.get(shots[id].comments_url, function(coms) {
 	        
-			//console.log(coms);
+	        // Create handlebars template and append it to DOM.
 			var tpl = Handlebars.compile( $('#shotComments').html() ); 
 			
 			$('.js-shot-comments').html('').append( tpl(coms) );
 			
+			// Check Tabs
 			UIKIT.tabs.tabCheck();
-			
-			console.log(shots[id]);
 	        
         });
         
