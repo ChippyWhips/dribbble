@@ -34,10 +34,10 @@
 		fetch the shots on load and also whenever called.
 	\*--------------------------------------------------*/
     
-    var fetch = (function(path, query) {
+    var fetch = function(path, query) {
 	    
-	    var path = (typeof path !== 'undefined') ? path : 'shots';
-	    var query = (typeof query !== 'undefined') ? query + '&' : '';
+	    path = typeof path !== 'undefined' ? path : 'shots';
+	    query = typeof query !== 'undefined' ? query + '&' : '';
 	    
 	    DRIBBBLE.api.get( path + '?' + query + 'per_page=96', function(data) {
 	        
@@ -48,7 +48,9 @@
 	        $('.js-shots').append( tpl(data) );
 	        
 	    });
-	})();
+	};
+	
+	fetch();
 	
 
     
@@ -67,7 +69,7 @@
 		$('.js-shots').html('');
 		
 
-		fetch( 'shots', 'ygyugu' );
+		fetch( 'shots', $.param(filters) );
 	
 	});
 	
