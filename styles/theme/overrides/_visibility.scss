@@ -1,0 +1,18 @@
+/*----------------------------------------------------------------------------*\
+	#VISIBILITY TRUMPS
+\*----------------------------------------------------------------------------*/
+
+.overflow-y {
+	max-height: 100%;
+	overflow-y: auto;
+}
+
+.overflow-x {
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.overflow {
+	max-height: 100%;
+	overflow: auto;
+}

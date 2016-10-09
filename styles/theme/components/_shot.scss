@@ -1,0 +1,100 @@
+/*----------------------------------------------------------------------------*\
+	#SHOT COMPONENT
+\*----------------------------------------------------------------------------*/
+
+.shot {
+    $block: &;
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 1rem;
+
+        // Elements
+        
+        &__title {
+            color: white;
+            font-size: 1rem;
+        }
+        
+        &__content {
+            border-radius: 4px;
+            max-width: 100%;
+            overflow: hidden;
+        }
+        
+        &__show-meta {
+            margin-left: auto;
+            @include area(2.25rem);
+            
+            &:hover {
+                
+                + #{$block}__content #{$block}__meta {
+                    transform: translateX(0);
+                }
+            }
+        }
+        
+        &__meta {
+            background-color: snow;
+            display: block;
+            @include area(100%);
+            left: 0; top: 0;
+            padding: 1rem;
+            position: absolute;
+            transform: translateX(-100%);
+            transition: transform $speed ease;
+            z-index: 1;
+            
+            &:hover {
+                transform: translateX(0);
+            }
+        }
+        
+        &__user {
+            align-items: center;
+            display: flex;
+            flex-flow: row;
+            padding: 1rem 0;
+            
+            &:hover {
+                
+                #{$block}__user-name {
+                    opacity: 0;
+                    transform: translateX(-1rem);
+                }
+                
+                #{$block}__username {
+                    opacity: 1;
+                    transform: translateX(1rem);
+                }
+            }
+        }
+        
+        &__user-meta {
+            padding-left: 1rem;
+        }
+        
+        &__username {
+            left: 0; top: 0;
+            position: absolute;
+            width: 100%;
+        }
+        
+        &__user-name {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+            transition: all $speed ease;
+        }
+        
+        &__username {
+            opacity: 0;
+            transform: translateX(2rem);
+            transition: all $speed ease;
+        }
+        
+    // Modifiers
+    
+
+}
+
+

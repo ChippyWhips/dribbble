@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+    <head>
+        
+        <!--------------------------------------------------
+        //	Document: Setup
+        --------------------------------------------------->
+    
+        <meta charset="utf-8">
+        
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Dribbble</title>
+        
+        <meta name="description" content="A modernist structured User Interface Kit for building responsive scalable web projects">
+        
+        <meta name="coverage" content="Worldwide">
+        
+        <meta name="format-detection" content="telephone=no">
+        
+        
+        
+        <!--------------------------------------------------
+        //	Document: Priority Resources
+        --------------------------------------------------->
+        
+        <link href="/styles/style.css" rel="stylesheet">
+        
+        
+    
+    </head>
+
+    <body>
+        
+        <!--------------------------------------------------
+        //	Site: Header
+        --------------------------------------------------->
+    
+        <header class="app-head" role="banner">
+        
+            <div class="grid  grid--item">
+                
+                <nav role="navigation">
+                    
+                    <select class="js-filter" data-filter="sort">
+	                    
+	                	<option value="popular">Popular</option>
+	                	
+	                	<option value="recent">Recent</option>
+	                	
+	                	<option value="comments">Comments</option>
+	                	
+	                	<option value="views">Views</option>
+	                    
+                    </select>
+                    
+                    <select class="js-filter" data-filter="type">
+	                    
+	                    <option value="all">All</option>
+	                    
+	                	<option value="animated">Animated</option>
+	                	
+	                	<option value="attachments">Attachments</option>
+	                	
+	                	<option value="debuts">Debuts</option>
+	                	
+	                	<option value="playoffs">Playoffs</option>
+	                	
+	                	<option value="rebounds">Rebounds</option>
+	                	
+	                	<option value="teams">Teams</option>
+	                    
+                    </select>
+                    
+                    <select class="js-filter" data-filter="timeframe">
+	                    
+	                	<option value="now">Now</option>
+	                	
+	                	<option value="week">Week</option>
+	                	
+	                	<option value="month">Month</option>
+	                	
+	                	<option value="year">Year</option>
+	                	
+	                	<option value="ever">All Time</option>
+	                    
+                    </select>
+                    
+                </nav>
+            
+            </div>
+        
+        </header>
+        
+        
+        
+        <!--------------------------------------------------
+        //	Site: Aside
+        --------------------------------------------------->
+        
+        <aside class="app-aside  off-canvas  off-canvas--right" role="aside" id="aside">
+        	
+	        <a class="h4  fixed" href="#">&larr;</a>
+	        
+	        <div class="grid  grid--max  overflow-y  justify-center">
+		        
+		        <div class="grid__item  size-10@m  size-8@l  size-6@xl  js-shot-single"></div>
+		        
+		        
+		        
+	        </div>
+
+        </aside>
+        
+        
+        
+        <!--------------------------------------------------
+        //	Site: Main
+        --------------------------------------------------->
+        
+        <main class="app-main" role="main">
+        
+            <section class="js-shots"></section>
+        
+        </main>
+        
+        
+        
+        <!--------------------------------------------------
+        //	Site: Footer
+        --------------------------------------------------->
+        
+        <footer class="app-foot" role="contentinfo">
+        
+            <div class="grid  grid--item">
+            
+                
+            
+            </div>
+        
+        </footer>
+        
+    
+        
+        
+        <!--------------------------------------------------
+        //	Document: Subservient Resources
+        --------------------------------------------------->
+        
+        <script src="/scripts/application/parties/svg4everybody.min.js"></script>
+        
+        <script src="/scripts/application/parties/handlebars.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        
+        <script>window.jQuery || document.write('<script src="/scripts/application/parties/jquery-3.1.1.min.js"><\/script>')</script>
+        
+        <script src="/scripts/framework/framework.min.js"></script>
+        
+        <script src="/scripts/application/application.min.js"></script>
+        
+        
+        
+        <!--------------------------------------------------
+        //	Document: Templates
+        --------------------------------------------------->
+        
+        
+        <!-- Shots -->
+        
+        <script id="shots" type="text/x-handlebars-template">
+            
+            <div class="grid">
+            
+                {{#each this}}
+                
+                <div class="grid__item  size-4@m  size-3@l">
+                    
+                    <article class="shot" id="{{id}}" data-count="{{@index}}">
+                        
+                        <button class="shot__show-meta  last">*</button>
+                        
+                        <div class="shot__content">
+                            
+                            <a class="js-shot" href="#aside"><img srcset="{{images.normal}}, {{images.hidpi}} 2x" alt="{{title}}"></a>
+                            
+                            <div class="shot__meta">
+                                
+                                <a class="shot__user" href="{{user.html_url}}">
+                                    
+                                    <img class="avatar" src="{{user.avatar_url}}">
+                                    
+                                    <div class="shot__user-meta">
+                                        
+                                        <span class="shot__user-name" rel="author">{{user.name}}</span>
+                                    
+                                        <span class="shot__username" rel="author">@{{user.username}}</span>
+                                        
+                                    </div>
+                                        
+                                </a>
+                                
+                                {{{description}}}
+    
+                            </div>
+                            
+                        </div>
+
+                        <h1 class="shot__title"><a class="js-shot" href="#aside">{{title}}</a></h1>
+
+                    </article>      
+                
+                </div>
+                
+                {{/each}}
+            
+            </div>
+            
+        </script>
+        
+        
+        <!-- Shot Single -->
+        
+        <script id="shotSingle" type="text/x-handlebars-template">
+	        
+	        
+	        <!-- Tabs -->
+	        
+	        <header>
+		        
+		        <div class="tabs">
+                    
+                    <a class="tab tab--active" href="#Shot" aria-role="tab" title="Shot">Shot</a>
+                    
+                    {{#if comments_count}}
+                    
+	                    <a class="tab" href="#Comments" aria-role="tab" title="Comments">Comments</a>
+                    
+                    {{/if}}
+                    
+                    {{#if buckets_count}}
+                    
+	                    <a class="tab" href="#Buckets" aria-role="tab" title="Buckets">Buckets</a>
+                    
+                    {{/if}}
+                    
+                    {{#if rebounds_count}}
+                    
+                    <a class="tab" href="#Rebounds" aria-role="tab" title="Rebounds">Rebounds</a>
+                    
+                    {{/if}}
+                                        
+                    <a class="tab" href="#More" aria-role="tab" title="More">More</a>
+                
+                </div>
+                
+			</header>
+			
+            
+            <!-- Tab Contents -->    
+            <section class="tab-contents">
+                    
+                <!-- Shot -->
+                    
+                <div class="tab-content tab-content--active" id="Shot" aria-role="tabpanel">
+            
+                    <article class="shot-single">
+				        
+				        <h1 class="shot-single__title">{{title}}</h1>
+				        
+				        <img class="shot-single__img" srcset="{{images.normal}}, {{images.hidpi}} 2x" alt="{{title}}">
+				        
+				        <div class="shot-single__attachments"></div>
+				        
+				    	<div class="shot-single__meta">
+		                    
+		                    <a class="shot__user" href="{{user.html_url}}">
+		                        
+		                        <img class="avatar" src="{{user.avatar_url}}">
+		                        
+		                        <div class="shot__user-meta">
+		                            
+		                            <span class="shot__user-name" rel="author">{{user.name}}</span>
+		                        
+		                            <span class="shot__username" rel="author">@{{user.username}}</span>
+		                            
+		                        </div>
+		                            
+		                    </a>
+		                    
+		                    {{{description}}}
+		                    
+		                    <div class="flex">
+			                    
+			                    <time>Created At: {{created_at}}</time>
+			                    
+			                    <time>Updated: {{updated_at}}</time>
+			                    
+		                    </div>
+		                    
+		                    <div class="shot-single__tags">
+		                    
+			                    {{#each tags}}
+			                    
+			                    	<span class="shot-single__tag">{{this}}</span>
+			                    
+			                    {{/each}}
+			                    
+		                    </div>
+							
+							
+							<div class="shot-single__counts">
+								
+								<span class="shot-single__count">{{buckets_count}}</span>
+								
+								<span class="shot-single__count">{{comments_count}}</span>
+								
+								<span class="shot-single__count">{{likes_count}}</span>
+								
+								<span class="shot-single__count">{{rebounds_count}}</span>
+								
+								<span class="shot-single__count">{{views_count}}</span>
+								
+							</div>
+							
+		                </div>
+
+			        </article>
+            
+                </div>
+				
+				{{#if comments_count}}
+				
+					<!-- Comments -->
+            
+	                <div class="tab-content  js-shot-comments" id="Comments" aria-role="tabpanel"></div>
+	                
+	            {{/if}}
+
+                {{#if buckets_count}}
+                
+                	<!-- Buckets -->
+            
+	                <div class="tab-content" id="Buckets" aria-role="tabpanel"></div>
+                
+                {{/if}}
+
+                {{#if rebounds_count}}
+                
+	                <!-- Rebounds -->
+	                
+	                <div class="tab-content" id="Rebounds" aria-role="tabpanel"></div>
+                
+                {{/if}}
+
+                <!-- More -->
+                
+                <div class="tab-content" id="More" aria-role="tabpanel"></div>
+                
+            </section>
+
+	        
+        </script>
+        
+        
+        <!-- Shot comments -->
+        
+        <script id="shotComments" type="text/x-handlebars-template">
+	        
+	        {{#each this}}
+	        
+	        	<blockquote class="comment">
+		        	
+		        	<header>
+			        	
+			        	<cite>
+			        	
+			        		<img class="avatar" src="{{user.avatar_url}}">
+			        		
+			        		<span>{{user.name}}</span>
+			        	
+			        	</cite>
+			        	
+			        	<div>
+				        	
+				        	{{{body}}}
+				        	
+			        	</div>
+			        	
+		        	</header>
+		        	
+		        	<footer>
+			        	
+			        	<time>Created at {{created_at}}</time>
+			        	
+			        	<span>&hearts; Likes {{likes}}</span>
+			        	
+		        	</footer>
+
+	        	</blockquote>
+	        
+	        {{/each}}
+	        
+        </script>
+        
+    
+    </body>
+
+</html>

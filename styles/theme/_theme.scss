@@ -1,0 +1,110 @@
+/*!---------------------------------------------------------------------------*\
+    
+	#YOUR PROJECT NAME
+	
+	- Version:      1.0
+	- Author:       YOUR NAME
+	- Site:         http://YOUR_SITE
+	- Copyright:    2016, YOUR COMPANY
+	– License:      YOUR LICENSE
+	
+\*----------------------------------------------------------------------------*/
+
+
+
+/*----------------------------------------------------------------------------*\
+	#FUNCTIONS
+	
+	Globally-available functions.
+\*----------------------------------------------------------------------------*/
+
+@import 'functions/function';           // Example function.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#MIXINS
+	
+	Globally-available mixins.
+\*----------------------------------------------------------------------------*/
+
+@import 'mixins/mixin';                 // Example Mixin.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#GENERIC
+	
+	Ground-zero styles. Low-specificity, far-reaching.
+\*----------------------------------------------------------------------------*/
+
+@import 'generic/keyframes';            // CSS Keyframe blocks.
+@import 'generic/fonts';                // Vector icons/fonts includes.
+@import 'generic/shared';               // Shared global commonalities.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#ELEMENTS
+	
+	Last layer for type selectors (h1-h6, a).
+\*----------------------------------------------------------------------------*/
+
+@import 'elements/document';            // Page-level styles (HTML, body etc).
+@import 'elements/forms';               // Form inputs, textareas.
+@import 'elements/images';              // Image stying.
+@import 'elements/links';               // Hyperlink styles.
+@import 'elements/lists';               // List styles.
+@import 'elements/quotes';              // Blockquotes, cite, etc.
+@import 'elements/type';                // All type styles.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#OBJECTS
+	
+	Design Patterns. Layout. No cosmetics. Start using agnostic classes only.
+\*----------------------------------------------------------------------------*/
+
+@import 'objects/object';               // Example object for layout only.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#COMPONENTS
+	
+	Designed pieces of UI. Only using classes. More explicit naming.
+\*----------------------------------------------------------------------------*/
+
+@import 'components/app-head';          // The page header.
+@import 'components/app-main';          // The page main.
+@import 'components/app-foot';          // The page footer.
+
+@import 'components/avatar';            // Avatar sizes.
+@import 'components/shot';              // The shot component.
+@import 'components/shot-single';       // The shot single component.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#HELPERS
+	
+	Overrides, helpers, utilities. Only affect one item at a time.
+\*----------------------------------------------------------------------------*/
+
+@import 'helpers/positioning';          // Position based helper classes.
+@import 'helpers/spacing';              // Micro-level spacing.
+
+
+
+/*----------------------------------------------------------------------------*\
+	#OVERRIDES
+	
+	Overrides, helpers, utilities. Only affect one item at a time.
+\*----------------------------------------------------------------------------*/
+
+@import 'overrides/uikit';         		// UIKIT class overrides.
+@import 'overrides/validation';         // Form validation styles.
+@import 'overrides/visibility';         // Helpers to show and side stuff.
+
+

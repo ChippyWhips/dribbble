@@ -1,0 +1,205 @@
+/*----------------------------------------------------------------------------*\
+	#FORM ELEMENT STYLES
+\*----------------------------------------------------------------------------*/
+
+fieldset {
+    border: 2px solid $secondary;
+}
+
+legend {
+    padding: 0 0.5rem;
+}
+
+meter {
+    appearance: none;
+    
+    &::-webkit-meter-bar,
+    &::-webkit-meter-optimum-value,
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-even-less-good-value {
+        border-radius: 1rem;
+    }
+    
+    &::-webkit-meter-bar {
+        background: $secondary;
+        height: 0.5rem;
+    }
+    
+    &::-webkit-meter-optimum-value {
+        background: $success;
+    }
+    
+    &::-webkit-meter-suboptimum-value {
+        background: $warn;
+    }
+    
+    &::-webkit-meter-even-less-good-value {
+        background: $error;
+    }
+}
+
+@-moz-document url-prefix() {
+    
+    meter {
+        background: $secondary;
+        border-radius: 1rem;
+        height: 0.5rem;
+        
+        &::-moz-meter-bar {
+            border-radius: 1rem;
+        }
+        
+        &:-moz-meter-optimum::-moz-meter-bar {
+            background: $success;
+        }
+        
+        &:-moz-meter-sub-optimum::-moz-meter-bar {
+            background: $warn;
+        }
+        
+        &:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+            background: $error;
+        }
+    }
+}
+
+progress {
+    animation: animate-progress 1s linear infinite;
+    appearance: none;
+    background: linear-gradient(to right, $primary 0%, lighten($primary, 25%) 45%, lighten($primary, 25%) 55%, $primary 100%) repeat;
+    border-radius: 1rem;
+    color: $primary;
+    height: 0.5rem;
+    
+    &[value],
+    &::-webkit-progress-bar,
+    &[value]::-webkit-progress-value {
+        background: none;
+        border: none;
+        border-radius: 1rem;
+    }
+    
+    &[value]::-webkit-progress-bar {
+        background: $secondary;
+    }
+    
+    &[value]::-webkit-progress-value {
+        background-color: $primary;
+    }
+}
+
+@-moz-document url-prefix() {
+    
+    progress[value],
+    progress[value]::-moz-progress-bar {
+        border: none;
+        border-radius: 1rem;
+        height: 0.5rem;
+    }
+    
+    progress[value] {
+        background-color: $secondary;
+        
+        &::-moz-progress-bar {
+            background-color: $primary;
+        }
+    }
+}
+
+select {
+    appearance: none;
+    background: $primary url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50px' height='50px'><polyline fill='white' points='46,15 25,36 4,15'/></svg>") no-repeat right 0.75rem center / 0.875rem;
+    border-radius: $radius;
+    border: none;
+    color: white;
+    height: 2.5rem;
+    line-height: 2.25;
+    padding: 0 1.125rem 0 1rem;
+}
+
+textarea,
+[type="color"],
+[type="email"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="month"],
+[type="number"],
+[type="password"],
+[type="search"],
+[type="tel"],
+[type="text"],
+[type="time"],
+[type="url"],
+[type="week"],
+[data-type="text"] {
+    background-color: $secondary;
+    border-radius: $radius;
+    height: 2.5rem;
+    display: block;
+    padding: 0 0.75rem;
+    transition: background-color $speed ease;
+    width: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    
+    &:focus {
+        background-color: white;
+        box-shadow: inset 0 0 0 2px $secondary;
+		outline: none;
+	}
+}
+
+textarea {
+    padding: 0.6875rem 0.75rem;
+}
+
+[type="checkbox"],
+[type="radio"] {
+    left: -100vw;
+    opacity: 0;
+    position: absolute;
+    
+    + label {
+        align-items: center;
+        cursor: pointer;
+        display: inline-flex;
+        flex-flow: row wrap;
+        margin: 0 1rem 1rem 0;
+        
+        
+        &::before {
+            content: '';
+            @include area(1.125rem);
+            margin-right: 0.75rem;
+            text-align: center;
+            transition: all $speed ease;
+        }
+    }
+}
+
+[type="checkbox"] {
+    
+    + label::before {
+        background: $secondary url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M31.74,7.14L27.63,3A0.88,0.88,0,0,0,26.5,3L10.38,19.11l-4.93-5a0.81,0.81,0,0,0-1.13,0L0.21,18.29a0.76,0.76,0,0,0-.21.57,0.7,0.7,0,0,0,.21.51L9.81,29a0.79,0.79,0,0,0,.57.26h0.05A0.55,0.55,0,0,0,10.94,29L31.74,8.22A0.79,0.79,0,0,0,32,7.65,0.63,0.63,0,0,0,31.74,7.14Z" /></svg>') no-repeat center 1.125rem / 0.75rem;
+        border-radius: $radius;
+    }
+    
+    &:checked + label::before {
+        background-position-y: center;
+    }
+}
+
+[type="radio"] {
+    
+    + label::before {
+        background: radial-gradient(ellipse at center, $primary 50%, $secondary 50%);
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1rem $secondary;
+    }
+    
+    &:checked + label::before {
+        box-shadow: inset 0 0 0 0.3125rem $secondary;
+    }
+}
+
+

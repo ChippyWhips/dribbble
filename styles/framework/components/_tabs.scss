@@ -1,0 +1,39 @@
+/*----------------------------------------------------------------------------*\
+	#TABS COMPONENT
+\*----------------------------------------------------------------------------*/
+
+.tabs {
+    display: flex;
+    flex-flow: row;
+}
+
+.tab {
+    background-color: rgba(white, 0.1);
+    border-radius: 3px;
+    flex: 1 0 0; 
+    margin: 0.5rem 1rem;
+    padding: 0 0.75rem;
+    text-align: center;
+    	
+    // Modifiers
+    
+    &--active {
+	    background-color: rgba(white, 0.25);
+    }
+}   
+
+.tab-content {
+	background-color: $dark;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.tab-content--active {
+    position: relative;
+    z-index: 1;
+}
+
+

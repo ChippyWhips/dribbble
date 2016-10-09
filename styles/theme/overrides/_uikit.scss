@@ -1,0 +1,22 @@
+/*----------------------------------------------------------------------------*\
+	#UIKIT OVERRIDES
+\*----------------------------------------------------------------------------*/
+
+// Off Canvas
+
+.off-canvas {
+	background-color: $dark;
+	padding: 0 1rem;
+	width: 100%;
+	z-index: 1;
+}
+
+
+// Blockquote
+
+blockquote {
+	background-color: lighten($dark, 10);
+	border: none;
+	border-radius: 3px;
+	color: white;
+}
